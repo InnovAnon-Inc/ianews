@@ -3,6 +3,13 @@ local S = minetest.get_translator(MODNAME)
 local F = minetest.formspec_escape
 local lpp = 14 -- Lines per book's page
 
+minetest.register_privilege("newspaper_editor", {
+	description = S("Newspaper Editor (writes to file system)"),
+	give_to_singleplayer = true,
+})
+
+minetest.mkdir(minetest.get_worldpath().."/news")
+
 ianews              = {}
 ianews.publications = {}
 
@@ -74,10 +81,11 @@ local function formspec_display(meta, player_name, pos)
 	--if ianews.publications[title] ~= true then return end -- don't write to weird files
 
 	local formspec
-	if --owner == player_name or
-		true or -- TODO
-	(minetest.check_player_privs(player_name, {editor = true})
-	and minetest.get_player_by_name(player_name):get_wielded_item():get_name() == "books:admin_pencil" ) then
+	if minetest.check_player_privs(player_name, {newspaper_editor = true,}) then
+		--owner == player_name or
+	--	true or -- TODO
+	--(minetest.check_player_privs(player_name, {editor = true})
+	--and minetest.get_player_by_name(player_name):get_wielded_item():get_name() == "books:admin_pencil" ) then
 		formspec = "size[8,8]" ..
 			default.gui_bg ..
 			default.gui_bg_img ..
