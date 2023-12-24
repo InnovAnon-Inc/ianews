@@ -150,6 +150,7 @@ minetest.register_node("ianews:newspaper_stack", {
        tiles = {"ianews_newspaper_stack.png",},
 	--tiles      = ianews.chest_add.tiles,
         paramtype2 = "facedir",
+        drawtype = "plantlike",
         --groups     = ianews.chest_add.groups,
 	--tube       = ianews.chest_add.tube,
         legacy_facedir_simple = true,
