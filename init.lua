@@ -14,7 +14,7 @@ ianews              = {}
 ianews.publications = {}
 
 minetest.register_craftitem("ianews:newspaper_blank", {
-        description = S("Blank Newspaper"),
+        description     = S("Blank Newspaper"),
         inventory_image = "ianews_newspaper_single.png"
 })
 minetest.register_craft({
@@ -31,6 +31,7 @@ ianews.register_special_newspaper = function(name, desc, image, file)
 	file = 'news/'..file
 	newspaper.register_newspaper(name, desc, 
 		"[combine:64x64:0,0=ianews_newspaper_single.png\\^\\[resize\\:64x64]:7,27="..image.."\\^\\[resize\\:23x23", file)
+	--groups          = { not_of_this_world = 3, },
 
 	ianews.publications[name] = file
 end
